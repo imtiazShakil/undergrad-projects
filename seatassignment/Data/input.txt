@@ -1,0 +1,16 @@
+2
+Shahjalal
+3
+RoomA 50
+RoomB 60
+RoomC 30
+Buet
+3
+RoomA 20
+RoomB 20
+RoomC 30
+
+2
+GroupA 100
+GroupB 80
+

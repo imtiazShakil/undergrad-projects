@@ -1,0 +1,836 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/*
+ * AdminFrame.java
+ *
+ * Created on Sep 19, 2012, 8:26:16 PM
+ */
+package bankingsystem;
+
+import java.awt.event.ActionEvent;
+import java.lang.String;
+import java.util.Vector;
+import javax.swing.AbstractAction;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
+
+/**
+ *
+ * @author Imitaz Shakil
+ */
+public class AdminFrame extends javax.swing.JFrame {
+
+    mytable mtb;
+    private int delete_row_indx=-1,mn_row_count=999999;
+    private String now_table="";
+    String query_col="", uset_name="",password="",typ;
+    JFrame mainFrame;
+    public AdminFrame(java.awt.Frame parent , String user, String pss,String typ) {
+        String who="";
+        if(typ.equals("1")) who="Adminstrator";
+        if(typ.equals("2")) who="Employee";
+        if(typ.equals("3")) who="Customer";
+        
+        this.uset_name=user;
+        this.typ=typ;
+        password=pss;
+        mainFrame=(JFrame) parent;
+        mainFrame.setVisible(false);
+        
+        initComponents();
+        
+        
+        Vector<String>v = get_all_tables_for_list1(typ);
+        Vector<String>v3=get_all_tables_for_list3(typ);
+        
+        jList1.removeAll();jList3.removeAll();
+        jList1.setListData(v);jList3.setListData(v3);
+        if( typ.equals("3") ) jPanel1.removeAll();
+        
+        jLabel1.setText("Welcome "+who+" " +user);
+        
+        mtb= new mytable(jTable1);
+        int sssm=ListSelectionModel.SINGLE_SELECTION;
+        jTable1.setSelectionMode(sssm);
+        
+        
+        ListSelectionModel rowSM = jTable1.getSelectionModel();
+            rowSM.addListSelectionListener(new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    //Ignore extra messages.
+                    if (e.getValueIsAdjusting()) return;
+
+                    ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+                    
+                    if (lsm.isSelectionEmpty()) {
+                        System.out.println("No rows are selected.");
+                    } else {
+                        int selectedRow = lsm.getMinSelectionIndex();
+                        System.out.println("Row " + selectedRow
+                                           + " is now selected.");
+                        delete_row_indx=selectedRow;
+                    }
+                }
+            });
+            
+            AbstractAction action = new AbstractAction()
+            {
+                
+                public void actionPerformed(ActionEvent e)
+                {
+                    TableCellListener tcl = (TableCellListener)e.getSource();
+                    System.out.println("Row   : " + tcl.getRow());
+                    System.out.println("Column: " + tcl.getColumn());
+                    System.out.println("Old   : " + tcl.getOldValue());
+                    System.out.println("New   : " + tcl.getNewValue());
+                    mtb.who_to_update(tcl.getRow(), tcl.getColumn(), now_table );
+                
+                }
+            };
+        TableCellListener tcl= new TableCellListener(jTable1, action);
+    }
+
+    Vector<String> get_all_tables_for_list1(String who)
+    {
+        String str[]={ "employee","customer","branch","account","loan","belongs" ,"borrow","belongs","borrowfrom","depositto","branchmd","manages","payment"};
+        String str2[]={ "customer","branch","account","loan","borrow","belongs","borrowfrom","depositto","payment" };
+        String str3[]={ "branch","account","loan" };
+        
+        Vector<String>v= new Vector<String>();
+        if(who.equals("1")) for(int i=0;i<(int)str.length;i++) v.add(str[i]); 
+        if(who.equals("2")) for(int i=0;i<(int)str2.length;i++) v.add(str2[i]); 
+        if(who.equals("3")) for(int i=0;i<(int)str3.length;i++) v.add(str3[i]); 
+                  
+            
+        return  v;
+    }
+    Vector<String> get_all_tables_for_list3(String who)
+    {
+        String str[]={ "Customer Field","Employee Field ","Branch Field","Loan Field","Account Field","Manager Field"};
+        String str2[]={"Customer Field","Branch Field","Loan Field","Account Field" };
+        String str3[]={ };
+        
+        Vector<String>v= new Vector<String>();
+        if(who.equals("1")) for(int i=0;i<(int)str.length;i++) v.add(str[i]); 
+        if(who.equals("2")) for(int i=0;i<(int)str2.length;i++) v.add(str2[i]); 
+        if(who.equals("3")) for(int i=0;i<(int)str3.length;i++) v.add(str3[i]); 
+                  
+            
+        return  v;
+    }
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList();
+        jTextField1 = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList4 = new javax.swing.JList();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(bankingsystem.BankingSystemApp.class).getContext().getResourceMap(AdminFrame.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
+        setAlwaysOnTop(true);
+        setName("Form"); // NOI18N
+
+        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), resourceMap.getString("jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel2.border.titleFont"))); // NOI18N
+        jPanel2.setName("jPanel2"); // NOI18N
+
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {  };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setName("jList1"); // NOI18N
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList1);
+
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        jList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {  };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList2.setName("jList2"); // NOI18N
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jList2);
+
+        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
+        jTextField1.setName("jTextField1"); // NOI18N
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText(resourceMap.getString("jButton8.text")); // NOI18N
+        jButton8.setName("jButton8"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText(resourceMap.getString("jButton7.text")); // NOI18N
+        jButton7.setName("jButton7"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        logOutButton.setText(resourceMap.getString("logOut_button.text")); // NOI18N
+        logOutButton.setName("logOut_button"); // NOI18N
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logOutButton))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(107, 107, 107))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton8)
+                        .addComponent(jButton7)
+                        .addComponent(logOutButton))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), resourceMap.getString("jPanel1.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel1.border.titleFont"))); // NOI18N
+        jPanel1.setEnabled(false);
+        jPanel1.setFocusable(false);
+        jPanel1.setName("jPanel1"); // NOI18N
+
+        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
+        jButton4.setName("jButton4"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText(resourceMap.getString("jButton5.text")); // NOI18N
+        jButton5.setName("jButton5"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+        jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText(resourceMap.getString("jButton6.text")); // NOI18N
+        jButton6.setName("jButton6"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addContainerGap(229, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), resourceMap.getString("jPanel3.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, resourceMap.getFont("jPanel3.border.titleFont"))); // NOI18N
+        jPanel3.setName("jPanel3"); // NOI18N
+
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        jPasswordField1.setText(resourceMap.getString("jPasswordField1.text")); // NOI18N
+        jPasswordField1.setName("jPasswordField1"); // NOI18N
+
+        jPasswordField2.setText(resourceMap.getString("jPasswordField2.text")); // NOI18N
+        jPasswordField2.setName("jPasswordField2"); // NOI18N
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        jButton9.setText(resourceMap.getString("jButton9.text")); // NOI18N
+        jButton9.setName("jButton9"); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+        jList3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {  };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList3.setName("jList3"); // NOI18N
+        jList3.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList3ValueChanged(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jList3);
+
+        jScrollPane5.setName("jScrollPane5"); // NOI18N
+
+        jList4.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = {  };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList4.setName("jList4"); // NOI18N
+        jList4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList4MouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jList4);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton9)))
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(181, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton9))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1.setIntercellSpacing(new java.awt.Dimension(2, 2));
+        jTable1.setName("jTable1"); // NOI18N
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTabbedPane1, 0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    boolean isNULL(Object o)
+    {
+        try {
+            if(o.equals(null)) return true;
+            return false;
+        }catch(Exception e)
+        {
+            return  true;
+        }
+    }
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+
+        mainFrame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logOutButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        
+        if(!typ.equals("3")) {
+            mtb.load_data(now_table);
+            Vector<String>v= mtb.get_coulumn_from_table(now_table);
+            
+            jList2.removeAll();
+            jList2.setListData(v);
+        }else {
+            now_table=now_table.toLowerCase();
+            if(now_table.equals("loan")) {
+                jList2.removeAll();
+                Vector<String>v= new Vector<String>();
+                jList2.setListData(v);
+                mtb.execute_query("select c.c_name,l.l_id,l.ammount,l.create_date from loan l ,borrow b ,customer c where c.c_name='"+this.uset_name+"' and c.c_id=b.c_id and b.l_id=l.l_id" );
+            }
+            else  {
+                mtb.load_data(now_table);
+                Vector<String>v= mtb.get_coulumn_from_table(now_table);
+                jList2.removeAll();
+                jList2.setListData(v);
+            }
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        Object obj=jList1.getSelectedValue( );
+        now_table=obj.toString();
+        System.out.println("List Selected "+ obj.toString()  );
+        
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        Object obj = jList2.getSelectedValue();
+        if(isNULL(obj)) jTextField1.setText( "Enter Search Value " );
+        else jTextField1.setText( obj.toString()+" = ?" );
+}//GEN-LAST:event_jList2ValueChanged
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        jTextField1.setText("");
+}//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        
+        String str=jTextField1.getText();
+        if(isNULL(str) || str.isEmpty() ) return;
+        if(isNULL(query_col) || query_col.isEmpty() ) query_col="";
+        System.out.println(str);
+        if(query_col.isEmpty()) query_col=jList2.getSelectedValue().toString() +" = '" + jTextField1.getText() + "' ";
+        else query_col=query_col +" and "+ jList2.getSelectedValue().toString() +" = '" + jTextField1.getText() + "' ";
+}//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        if(isNULL(mtb)) return;
+        mtb.execute_query( "select * from " + now_table + " where "+ query_col);
+        query_col="";
+}//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        query_col="";
+}//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ///delete data
+        if(isNULL(mtb)) return;
+        mtb.delete_data(delete_row_indx, now_table );
+}//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        ///update_data
+        if(isNULL(mtb)) return;
+        mtb.final_update();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ///insert blank row
+        if(isNULL(mtb)) return;
+        mn_row_count=Math.min(mn_row_count,jTable1.getRowCount() );
+        
+        mtb.create_blank_row();
+}//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ///save_data
+        if(isNULL(mtb)) return;
+        mtb.save_data(mn_row_count,now_table);
+        mn_row_count=999999;
+}//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+//        if(isNULL(mtb)) return;
+//        if(Oracle_Connection.isOracleConnected()) mtb.load_data(now_table);
+        jButton1ActionPerformed(null);
+}//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        if(evt.getClickCount()==2) jButton1ActionPerformed(null);
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        String old=jPasswordField1.getText();
+        String nnew=jPasswordField2.getText();
+        if(old.equals(password)) { 
+            Oracle_Connection.execute_query("update users SET password='"+nnew+"'"+"where name='"+this.uset_name+"'");
+            JOptionPane.showMessageDialog(this, "Password Changed Successfully");
+        }
+        else JOptionPane.showMessageDialog(this, "Incorrect Password");    
+        jPasswordField1.setText("");jPasswordField2.setText("");
+            
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        if(typ.equals("3")) mtb.execute_query("select * from customer where c_name='"+this.uset_name+"'");
+        if(typ.equals("2")) mtb.execute_query("select * from employee where e_name='"+this.uset_name+"'");
+        if(typ.equals("1")) mtb.execute_query("select * from manager where m_name='"+this.uset_name+"'");
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jList3ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList3ValueChanged
+
+        jList4.removeAll();
+        
+        System.out.println("indx selected "+jList3.getSelectedIndex() );
+        Vector<String>v= for_Jlist4(jList3.getSelectedIndex(), typ);
+        
+        jList4.setListData(v);
+        
+    }//GEN-LAST:event_jList3ValueChanged
+
+    private void jList4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList4MouseClicked
+        
+        if(evt.getClickCount()!=2) return;
+        String qqq=get_query(typ, jList3.getSelectedIndex() , jList4.getSelectedIndex());
+        mtb.execute_query(qqq);
+        
+    }//GEN-LAST:event_jList4MouseClicked
+
+    Vector<String> for_Jlist4( int indx, String who)
+    {
+        Vector<String>v=new Vector<String>();
+        if(who.equals("1"))
+        {
+            String[][] str={
+                {"Total Loan List" ,"Total Account List","Total Amount on Account","Total Amount on Loan","Top Customer List"},
+                {"Branch Name","Manager Name"},
+                {"Total Loan List","Total Amount list","Total Employee List","Total Loan Amount","Total Account Amount","MD History"},
+                {"Payment List","Loan Amount","Loan list"},
+                {"Account Amount","Account List"},
+                {"Manager List","Employee List"}
+            };
+
+            for(int i=0;i<str[indx].length;i++) v.add( str[indx][i].toString() );
+            
+        }
+        else if( who.equals("2") )
+        {
+            String[][] str={
+                {"Total Loan List" ,"Total Account List","Total Amount on Account","Total Amount on Loan","Top Customer List"},
+                {"Total Loan List","Total Amount list","Total Employee List","Total Loan Amount","Total Account Amount","MD History"},
+                {"Payment List","Loan Amount","Loan list"},
+                {"Account Amount","Account List"}
+            };
+            for(int i=0;i<str[indx].length;i++) v.add( str[indx][i].toString() );
+        }
+        return v;
+    }
+    String get_query(String who, int row, int col)
+    {
+        String[][] admin_query= {
+            {"select c.c_name, l.l_id,l.ammount,b.b_name,b.b_city, l.create_date  from branch b,borrowfrom bf,customer c,loan l, borrow br where c.c_id = br.c_id and br.l_id = l.l_id and l.l_id = bf.l_id and bf.b_id = b.b_id",
+              "select c.c_name, a.a_id,a.ammount,b.b_name,b.b_city, a.day from customer c, account a, deposit d,depositto dt,branch b where c.c_id = d.c_id and d.a_id=a.a_id and a.a_id=dt.a_id and dt.b_id = b.b_id",
+              "select c.c_id,sum(a.ammount) from customer c, deposit d, account a group by c.c_id,d.c_id,d.a_id,a.a_id having c.c_id=d.c_id and d.a_id=a.a_id",
+              "select c.c_id,sum(l.ammount) from customer c, borrow b, loan l group by c.c_id,b.c_id,b.l_id,l.l_id having c.c_id=b.c_id and b.l_id=l.l_id",
+              "select c.c_id,sum(l.ammount) from customer c, borrow b, loan l group by c.c_id,b.c_id,b.l_id,l.l_id having c.c_id=b.c_id and b.l_id=l.l_id order by sum(l.ammount) decs"
+            },
+            {
+                "select e.e_name,b.b_name,b.b_city,e.join_date from employee e, branch b, belongs be where e.e_id=be.e_id and be.b_id= b.b_id",
+                "select e.e_name,b.b_name,b.b_city,m.m_name,m.start_date from employee e,branch b,manager m,manages md where e.e_id= md.e_id and md.b_id=b.b_id and md.m_id = m.m_id"
+            },
+            {
+                "select b.b_name,l.l_id,l.ammount,l.create_date from branch b,loan l, borrowfrom bf where b.b_id=bf.b_id and bf.l_id = l.l_id",
+                "select b.b_name,a.a_id,a.ammount,a.day from branch b, account a,depositto dt where b.b_id=dt.b_id and dt.a_id = a.a_id",
+                "select b.b_name,e.e_name, e.join_date from branch b, employee e,belongs be where b.b_id = be.b_id and be.e_id = e.e_id",
+                "select b.b_id,sum(l.ammount) from branch b,loan l, borrowfrom bf group by b.b_id,bf.b_id,bf.l_id,l.l_id having b.b_id=bf.b_id and bf.l_id = l.l_id order by sum(l.ammount) desc",
+                "select b.b_id,sum(a.ammount) from branch b, depositto dt, account a group by b.b_id,dt.b_id,dt.a_id,a.a_id having b.b_id=dt.b_id and dt.a_id=a.a_id order by sum(a.ammount) desc",
+                "select b.b_name,m.m_name,md.start_date,md.end_date from branch b,manager m, branchmd md where m.m_id=md.m_id and md.b_id = b.b_id"
+            },
+            {
+                "select c.c_name,l.l_id,l.ammount,l.create_date,p.pay_ammount,p.pay_date from customer c,payment p,loan l,borrow b where l.l_id = p.l_id and l.l_id =b.l_id and b.c_id = c.c_id",
+                "select b.b_id,sum(l.ammount) from branch b,loan l, borrowfrom bf group by b.b_id,bf.b_id,bf.l_id,l.l_id having b.b_id=bf.b_id and bf.l_id = l.l_id order by sum(l.ammount) desc",
+                "select b.b_name,l.l_id,l.ammount,l.create_date from branch b,loan l, borrowfrom bf where b.b_id=bf.b_id and bf.l_id = l.l_id"
+            },
+            {
+              "select b.b_id,sum(a.ammount) from branch b, depositto dt, account a group by b.b_id,dt.b_id,dt.a_id,a.a_id having b.b_id=dt.b_id and dt.a_id=a.a_id order by sum(a.ammount) desc",
+              "select a.a_id,b.b_name,a.ammount,a.day from branch b, account a,depositto dt where b.b_id=dt.b_id and dt.a_id = a.a_id"
+            },
+            {
+                "select m.m_name,b.b_name,md.start_date,md.end_date from branch b,manager m, branchmd md where m.m_id=md.m_id and md.b_id = b.b_id",
+                "select m.m_name,e.e_name,b.b_name,b.b_city,m.start_date from employee e,branch b,manager m,manages md where e.e_id= md.e_id and md.b_id=b.b_id and md.m_id = m.m_id"
+            }
+        };
+        
+        
+        String[][] employee_query= {
+            {"select c.c_name, l.l_id,l.ammount,b.b_name,b.b_city, l.create_date  from branch b,borrowfrom bf,customer c,loan l, borrow br where c.c_id = br.c_id and br.l_id = l.l_id and l.l_id = bf.l_id and bf.b_id = b.b_id",
+              "select c.c_name, a.a_id,a.ammount,b.b_name,b.b_city, a.day from customer c, account a, deposit d,depositto dt,branch b where c.c_id = d.c_id and d.a_id=a.a_id and a.a_id=dt.a_id and dt.b_id = b.b_id",
+              "select c.c_id,sum(a.ammount) from customer c, deposit d, account a group by c.c_id,d.c_id,d.a_id,a.a_id having c.c_id=d.c_id and d.a_id=a.a_id",
+              "select c.c_id,sum(l.ammount) from customer c, borrow b, loan l group by c.c_id,b.c_id,b.l_id,l.l_id having c.c_id=b.c_id and b.l_id=l.l_id",
+              "select c.c_id,sum(l.ammount) from customer c, borrow b, loan l group by c.c_id,b.c_id,b.l_id,l.l_id having c.c_id=b.c_id and b.l_id=l.l_id order by sum(l.ammount) decs"
+            },
+            {
+                "select b.b_name,l.l_id,l.ammount,l.create_date from branch b,loan l, borrowfrom bf where b.b_id=bf.b_id and bf.l_id = l.l_id",
+                "select b.b_name,a.a_id,a.ammount,a.day from branch b, account a,depositto dt where b.b_id=dt.b_id and dt.a_id = a.a_id",
+                "select b.b_name,e.e_name, e.join_date from branch b, employee e,belongs be where b.b_id = be.b_id and be.e_id = e.e_id",
+                "select b.b_id,sum(l.ammount) from branch b,loan l, borrowfrom bf group by b.b_id,bf.b_id,bf.l_id,l.l_id having b.b_id=bf.b_id and bf.l_id = l.l_id order by sum(l.ammount) desc",
+                "select b.b_id,sum(a.ammount) from branch b, depositto dt, account a group by b.b_id,dt.b_id,dt.a_id,a.a_id having b.b_id=dt.b_id and dt.a_id=a.a_id order by sum(a.ammount) desc",
+                "select b.b_name,m.m_name,md.start_date,md.end_date from branch b,manager m, branchmd md where m.m_id=md.m_id and md.b_id = b.b_id"
+            },
+            {
+                "select c.c_name,l.l_id,l.ammount,l.create_date,p.pay_ammount,p.pay_date from customer c,payment p,loan l,borrow b where l.l_id = p.l_id and l.l_id =b.l_id and b.c_id = c.c_id",
+                "select b.b_id,sum(l.ammount) from branch b,loan l, borrowfrom bf group by b.b_id,bf.b_id,bf.l_id,l.l_id having b.b_id=bf.b_id and bf.l_id = l.l_id order by sum(l.ammount) desc",
+                "select b.b_name,l.l_id,l.ammount,l.create_date from branch b,loan l, borrowfrom bf where b.b_id=bf.b_id and bf.l_id = l.l_id"
+            },
+            {
+              "select b.b_id,sum(a.ammount) from branch b, depositto dt, account a group by b.b_id,dt.b_id,dt.a_id,a.a_id having b.b_id=dt.b_id and dt.a_id=a.a_id order by sum(a.ammount) desc",
+              "select a.a_id,b.b_name,a.ammount,a.day from branch b, account a,depositto dt where b.b_id=dt.b_id and dt.a_id = a.a_id"
+            }
+        };
+        if(who.equals("1")) return admin_query[row][col];
+        if(who.equals("2")) return employee_query[row][col];
+        
+        return "";
+        
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
+    private javax.swing.JList jList2;
+    private javax.swing.JList jList3;
+    private javax.swing.JList jList4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton logOutButton;
+    // End of variables declaration//GEN-END:variables
+}

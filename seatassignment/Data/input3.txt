@@ -1,0 +1,21 @@
+3
+BUET
+3
+RoomA 5
+RoomB 40
+RoomC 30
+
+MDC
+2
+RoomA 80
+RoomB 100
+
+ShahjalalSchool
+1
+RoomA 55
+
+
+1
+GroupC 90
+
+

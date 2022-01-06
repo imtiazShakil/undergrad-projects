@@ -1,0 +1,37 @@
+Jan 06, 2022 11:31:50 PM adsprojectjava.get_connection make_sql_connection
+SEVERE: null
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1015)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:989)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:975)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:920)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2565)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2301)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:346)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
+	at adsprojectjava.get_connection.make_sql_connection(get_connection.java:33)
+	at adsprojectjava.AdsProjectJava.main(AdsProjectJava.java:13)
+Caused by: java.lang.NullPointerException
+	at com.mysql.jdbc.ConnectionImpl.getServerCharacterEncoding(ConnectionImpl.java:3276)
+	at com.mysql.jdbc.MysqlIO.sendConnectionAttributes(MysqlIO.java:1940)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1866)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1252)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2483)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2516)
+	... 14 more
+

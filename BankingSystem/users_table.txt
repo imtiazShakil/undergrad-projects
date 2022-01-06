@@ -1,0 +1,6 @@
+create table users (
+name varchar(15) primary key ,
+password varchar(15) not null,
+typ number not null );
+
+

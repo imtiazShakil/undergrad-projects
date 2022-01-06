@@ -1,0 +1,65 @@
+# depslib dependency file v1.0
+1009968789 source:d:\most recent\graphics\graphics\test.cpp
+
+1009968794 source:d:\most recent\graphics\graphics\test2.cpp
+	<graphics.h>
+
+1009992095 source:d:\most recent\graphics\graphics\main.cpp
+	<iostream>
+	<queue>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<ctype.h>
+	<graphics.h>
+	<conio.h>
+
+1298142797 source:k:\game\main.cpp
+	<iostream>
+	<queue>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<ctype.h>
+	<graphics.h>
+	<conio.h>
+
+1298142831 source:h:\game\main.cpp
+	<iostream>
+	<queue>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<ctype.h>
+	<graphics.h>
+	<conio.h>
+
+1298185731 source:d:\most recent\graphics\game on dfdfd (172.17.0.33)\main.cpp
+	<iostream>
+	<queue>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<ctype.h>
+	<graphics.h>
+	<conio.h>
+	<windows.h>
+	<MMSystem.h>
+
+1298185924 source:c:\users\imitaz shakil\dropbox\my projects\project 100\main.cpp
+	<iostream>
+	<queue>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<ctype.h>
+	<graphics.h>
+	<conio.h>
+	<windows.h>
+	<MMSystem.h>
+

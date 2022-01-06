@@ -1,0 +1,445 @@
+12
+
+
+Center1
+25
+Room1 17
+Room2 67
+Room3 80
+Room4 47
+Room5 117
+Room6 52
+Room7 8
+Room8 13
+Room9 67
+Room10 72
+Room11 60
+Room12 97
+Room13 111
+Room14 15
+Room15 118
+Room16 96
+Room17 35
+Room18 72
+Room19 22
+Room20 75
+Room21 80
+Room22 22
+Room23 55
+Room24 35
+Room25 26
+
+
+Center2
+57
+Room1 36
+Room2 57
+Room3 63
+Room4 49
+Room5 113
+Room6 75
+Room7 111
+Room8 61
+Room9 109
+Room10 95
+Room11 108
+Room12 112
+Room13 103
+Room14 50
+Room15 51
+Room16 31
+Room17 14
+Room18 38
+Room19 41
+Room20 7
+Room21 9
+Room22 71
+Room23 66
+Room24 19
+Room25 21
+Room26 13
+Room27 36
+Room28 64
+Room29 36
+Room30 57
+Room31 40
+Room32 59
+Room33 109
+Room34 98
+Room35 103
+Room36 89
+Room37 40
+Room38 82
+Room39 25
+Room40 16
+Room41 44
+Room42 8
+Room43 124
+Room44 23
+Room45 53
+Room46 50
+Room47 41
+Room48 54
+Room49 75
+Room50 77
+Room51 49
+Room52 72
+Room53 16
+Room54 110
+Room55 86
+Room56 24
+Room57 111
+
+
+Center3
+3
+Room1 83
+Room2 22
+Room3 41
+
+
+Center4
+34
+Room1 76
+Room2 17
+Room3 83
+Room4 47
+Room5 101
+Room6 110
+Room7 124
+Room8 122
+Room9 122
+Room10 43
+Room11 5
+Room12 113
+Room13 53
+Room14 46
+Room15 30
+Room16 89
+Room17 95
+Room18 101
+Room19 42
+Room20 19
+Room21 48
+Room22 53
+Room23 117
+Room24 9
+Room25 72
+Room26 95
+Room27 121
+Room28 31
+Room29 112
+Room30 29
+Room31 16
+Room32 55
+Room33 41
+Room34 87
+
+
+Center5
+53
+Room1 17
+Room2 72
+Room3 96
+Room4 6
+Room5 69
+Room6 7
+Room7 7
+Room8 49
+Room9 55
+Room10 48
+Room11 75
+Room12 20
+Room13 10
+Room14 51
+Room15 57
+Room16 17
+Room17 94
+Room18 97
+Room19 121
+Room20 98
+Room21 36
+Room22 91
+Room23 86
+Room24 54
+Room25 70
+Room26 102
+Room27 58
+Room28 120
+Room29 18
+Room30 20
+Room31 85
+Room32 22
+Room33 79
+Room34 48
+Room35 24
+Room36 16
+Room37 50
+Room38 26
+Room39 60
+Room40 101
+Room41 61
+Room42 10
+Room43 116
+Room44 58
+Room45 56
+Room46 40
+Room47 62
+Room48 17
+Room49 124
+Room50 58
+Room51 102
+Room52 27
+Room53 16
+
+
+Center6
+41
+Room1 77
+Room2 81
+Room3 32
+Room4 122
+Room5 69
+Room6 37
+Room7 17
+Room8 29
+Room9 55
+Room10 83
+Room11 64
+Room12 74
+Room13 94
+Room14 110
+Room15 87
+Room16 22
+Room17 86
+Room18 15
+Room19 27
+Room20 69
+Room21 68
+Room22 71
+Room23 96
+Room24 6
+Room25 83
+Room26 95
+Room27 51
+Room28 61
+Room29 117
+Room30 63
+Room31 103
+Room32 61
+Room33 19
+Room34 11
+Room35 58
+Room36 75
+Room37 43
+Room38 62
+Room39 91
+Room40 85
+Room41 13
+
+
+Center7
+27
+Room1 34
+Room2 102
+Room3 16
+Room4 108
+Room5 119
+Room6 89
+Room7 118
+Room8 14
+Room9 33
+Room10 54
+Room11 80
+Room12 124
+Room13 47
+Room14 38
+Room15 86
+Room16 93
+Room17 86
+Room18 78
+Room19 31
+Room20 65
+Room21 7
+Room22 38
+Room23 63
+Room24 52
+Room25 100
+Room26 101
+Room27 102
+
+
+Center8
+23
+Room1 62
+Room2 110
+Room3 93
+Room4 83
+Room5 87
+Room6 104
+Room7 59
+Room8 74
+Room9 68
+Room10 52
+Room11 83
+Room12 88
+Room13 93
+Room14 30
+Room15 87
+Room16 15
+Room17 55
+Room18 40
+Room19 96
+Room20 17
+Room21 113
+Room22 114
+Room23 69
+
+
+Center9
+33
+Room1 19
+Room2 7
+Room3 35
+Room4 115
+Room5 95
+Room6 12
+Room7 57
+Room8 24
+Room9 117
+Room10 17
+Room11 95
+Room12 71
+Room13 116
+Room14 29
+Room15 12
+Room16 51
+Room17 68
+Room18 90
+Room19 6
+Room20 37
+Room21 115
+Room22 80
+Room23 39
+Room24 46
+Room25 115
+Room26 10
+Room27 50
+Room28 95
+Room29 120
+Room30 106
+Room31 78
+Room32 6
+Room33 100
+
+
+Center10
+26
+Room1 116
+Room2 70
+Room3 99
+Room4 40
+Room5 82
+Room6 91
+Room7 52
+Room8 44
+Room9 29
+Room10 35
+Room11 68
+Room12 37
+Room13 81
+Room14 11
+Room15 114
+Room16 74
+Room17 35
+Room18 105
+Room19 29
+Room20 70
+Room21 18
+Room22 19
+Room23 67
+Room24 55
+Room25 110
+Room26 54
+
+
+Center11
+12
+Room1 63
+Room2 56
+Room3 11
+Room4 30
+Room5 47
+Room6 68
+Room7 124
+Room8 83
+Room9 17
+Room10 90
+Room11 122
+Room12 56
+
+
+Center12
+52
+Room1 33
+Room2 111
+Room3 18
+Room4 101
+Room5 110
+Room6 8
+Room7 51
+Room8 20
+Room9 100
+Room10 75
+Room11 77
+Room12 105
+Room13 90
+Room14 20
+Room15 35
+Room16 67
+Room17 61
+Room18 58
+Room19 117
+Room20 112
+Room21 56
+Room22 22
+Room23 27
+Room24 111
+Room25 21
+Room26 97
+Room27 116
+Room28 98
+Room29 94
+Room30 47
+Room31 79
+Room32 122
+Room33 34
+Room34 85
+Room35 91
+Room36 11
+Room37 88
+Room38 17
+Room39 26
+Room40 55
+Room41 87
+Room42 91
+Room43 35
+Room44 44
+Room45 98
+Room46 57
+Room47 98
+Room48 34
+Room49 102
+Room50 90
+Room51 14
+Room52 25
+
+8
+Group1 10000
+Group2 2972
+Group3 4087
+Group4 4511
+Group5 836
+Group6 1486
+Group7 140
+Group8 148

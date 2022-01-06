@@ -1,0 +1,4 @@
+Each Room must contain atleast the additional seats.
+
+Works best when number of groups is low
+

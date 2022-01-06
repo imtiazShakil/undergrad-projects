@@ -1,0 +1,83 @@
+--loan list
+
+
+1. select c.c_name, l.l_id,l.ammount,b.b_name,b.b_city, l.create_date  from branch b,borrowfrom bf,customer c,loan l, borrow br where c.c_id = br.c_id and br.l_id = l.l_id and l.l_id = bf.l_id and bf.b_id = b.b_id;
+
+
+--account list
+
+2. select c.c_name, a.a_id,a.ammount,b.b_name,b.b_city, a.day from customer c, account a, deposit d,depositto dt,branch b where c.c_id = d.c_id and d.a_id=a.a_id and a.a_id=dt.a_id and dt.b_id = b.b_id;
+
+-- total ammount on account
+
+3. select c.c_id,sum(a.ammount) from customer c, deposit d, account a group by c.c_id,d.c_id,d.a_id,a.a_id having c.c_id=d.c_id and d.a_id=a.a_id;
+
+--- total amount on loan
+
+4. select c.c_id,sum(l.ammount) from customer c, borrow b, loan l group by c.c_id,b.c_id,b.l_id,l.l_id having c.c_id=b.c_id and b.l_id=l.l_id;
+
+--- top customer list
+5. select c.c_id,sum(l.ammount) from customer c, borrow b, loan l group by c.c_id,b.c_id,b.l_id,l.l_id having c.c_id=b.c_id and b.l_id=l.l_id order by sum(l.ammount) decs;
+
+
+FOR EMPLOYEEEEEEEEEEEEEEEEEEEEEE
+---------------------------------------------------------------------------------------------
+
+-- branch name
+1. select e.e_name,b.b_name,b.b_city,e.join_date from employee e, branch b, belongs be where e.e_id=be.e_id and be.b_id= b.b_id;
+
+--manager name
+
+2. select e.e_name,b.b_name,b.b_city,m.m_name,m.start_date from employee e,branch b,manager m,manages md where e.e_id= md.e_id and md.b_id=b.b_id and md.m_id = m.m_id;
+
+
+FOR BRANCH
+------------------------------------------------------------------------------------------------
+
+--- loan list
+1. select b.b_name,l.l_id,l.ammount,l.create_date from branch b,loan l, borrowfrom bf where b.b_id=bf.b_id and bf.l_id = l.l_id;
+
+--- account list
+2. select b.b_name,a.a_id,a.ammount,a.day from branch b, account a,depositto dt where b.b_id=dt.b_id and dt.a_id = a.a_id;
+
+--- employee list
+3. select b.b_name,e.e_name, e.join_date from branch b, employee e,belongs be where b.b_id = be.b_id and be.e_id = e.e_id;
+
+--- customer list
+4. 
+--- loan amount
+5. select b.b_id,sum(l.ammount) from branch b,loan l, borrowfrom bf group by b.b_id,bf.b_id,bf.l_id,l.l_id having b.b_id=bf.b_id and bf.l_id = l.l_id order by sum(l.ammount) desc;
+
+--- account amount
+6. select b.b_id,sum(a.ammount) from branch b, depositto dt, account a group by b.b_id,dt.b_id,dt.a_id,a.a_id having b.b_id=dt.b_id and dt.a_id=a.a_id order by sum(a.ammount) desc;
+
+--- MD history
+7. select b.b_name,m.m_name,md.start_date,md.end_date from branch b,manager m, branchmd md where m.m_id=md.m_id and md.b_id = b.b_id;
+
+loan list
+------------------------------------------------------------------------------------------------
+---payment list
+1. select c.c_name,l.l_id,l.ammount,l.create_date,p.pay_ammount,p.pay_date from customer c,payment p,loan l,borrow b where l.l_id = p.l_id and l.l_id =b.l_id and b.c_id = c.c_id;
+
+---loan amount 
+2. select b.b_id,sum(l.ammount) from branch b,loan l, borrowfrom bf group by b.b_id,bf.b_id,bf.l_id,l.l_id having b.b_id=bf.b_id and bf.l_id = l.l_id order by sum(l.ammount) desc;
+---loan list
+3. select b.b_name,l.l_id,l.ammount,l.create_date from branch b,loan l, borrowfrom bf where b.b_id=bf.b_id and bf.l_id = l.l_id;
+
+account list
+-------------------------------------------------------------------------------------------------
+--- account amount
+1. select b.b_id,sum(a.ammount) from branch b, depositto dt, account a group by b.b_id,dt.b_id,dt.a_id,a.a_id having b.b_id=dt.b_id and dt.a_id=a.a_id order by sum(a.ammount) desc;
+
+--- account list
+2.  select a.a_id,b.b_name,a.ammount,a.day from branch b, account a,depositto dt where b.b_id=dt.b_id and dt.a_id = a.a_id;
+
+
+Manager
+--------------------------------------------------------------
+----Manager list
+1. select m.m_name,b.b_name,md.start_date,md.end_date from branch b,manager m, branchmd md where m.m_id=md.m_id and md.b_id = b.b_id;
+
+--- employee list
+2. select m.m_name,e.e_name,b.b_name,b.b_city,m.start_date from employee e,branch b,manager m,manages md where e.e_id= md.e_id and md.b_id=b.b_id and md.m_id = m.m_id;
+
